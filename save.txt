@@ -1,0 +1,95 @@
+#include<iostream>
+using namespace std;
+
+//Подсчитать среднее арифметическое всех листов дерева.
+//Затем вычесть из каждого листа данное значение, затем
+//обойти дерево еще раз и удалить все элементы, делящиеся без
+//остатка на 3 и перестроить дерево с учетом изменений
+//Обратный порядок обхода
+
+
+struct vertex {
+	//vertex* parent;
+	vertex* left = NULL;
+	vertex* right = NULL;
+	int value;
+	int balance;
+	vertex() {}
+	vertex(vertex* left, vertex* right, int balance) {
+		this->left = left;
+		this->right = right;
+		this->balance = balance;
+	}
+};
+
+vertex* rotateLeft(vertex* a) {
+	vertex* b = a->right;
+	int r = 0 - (a->balance + b->balance) / 2;
+	int q = b->balance - r;
+	int p = a->balance + max(q, r) + 1;
+
+	a->right = b->left;
+	b->left = a;
+	a->balance = p - q;
+	b->balance = max(p, q) - r + 1;
+
+	return b;
+}
+
+vertex* rotateRight(vertex* a) {
+	vertex* b = a->left; // 1 or 0
+	int p = (a->balance + b->balance) / 2;
+	int q = p - b->balance;
+	int r = max(p, q) - a->balance + 1;
+
+	b->right = a;
+	a->left = b->right;
+	
+
+	b->balance = p - max(q, r) - 1; //0 or -1
+	a->balance = q - r; // 0 or 1
+
+	return b;
+}
+
+vertex* bigRotateLeft(vertex* a) {
+	a->right = rotateRight(a->right);
+	return rotateLeft(a);
+}
+
+vertex* bigRotateRight(vertex* a) {
+	a->left = rotateLeft(a->left);
+	return rotateRight(a);
+}
+
+
+
+
+
+int main() {
+	setlocale(LC_ALL, "rus");
+
+	vertex* S = new vertex();
+	vertex* R = new vertex();
+	vertex* Q = new vertex();
+	vertex* P = new vertex();
+	vertex* c =new vertex(Q, R, 1);
+	vertex* b = new vertex(c, S, 1);
+	vertex* a = new vertex(P, b, -2);
+
+
+
+	vertex* root = bigRotateLeft(a);
+
+	if (root->right == b) cout << "1 ";
+	if (root->left == a) cout << "2 ";
+	if (root->right->right == S) cout << "3 ";
+	if (root->left->right == Q) cout << "4 ";
+	if (root->balance == 0) cout << "5 ";
+	if (root->right->balance == -1) cout << "6 ";
+	if (root->left->balance == 0) cout << "7 ";
+	cout << root->left->balance;
+
+
+
+}

@@ -1,0 +1,59 @@
+LEFT
+a->balance b->balance h_p h_q h_r a_new b_new 
+       -2       -1     0   0   1    0     0    
+       -2        0     0   1   1   -1     1     
+                       1   1   2        
+       -2       -2     1   0   2    1     0    
+                       0   0   1    
+       -1        0                  0     1                
+       -1       -1                  1     1      
+       -1        1                  0     1
+bn = 1
+an = 0
+bn = 0 if ((ab + bb) < -2)
+an = 1 if (ab == bb)
+an =-1 else if (ab + bb == -2 )      
+
+an = 1
+bn = 0
+bb == -1 an = 0 
+bb == 0 bn = 1, an = -1  
+
+RIGHT
+2  1  0  0
+2  0  1 -1
+2  2  -1 0
+1 0   0 -1
+1 0   -1 -1
+1 -1   0 -1
+
+bn = -1
+an = 0
+bn = 0 if ((ab + bb) > 2)
+an = -1 if (ab == bb)
+an = 1 else if (ab + bb == 2 )      
+
+an = 1
+bn = 0
+bb == -1 an = 0 
+bb == 0 bn = 1, an = -1  
+
+LEFT
+
+bn = 1
+an = 0
+bn = 0 if ((ab + bb) < -2) // true
+bn = 2 if (ab + bb) == 0
+an = 1 if (ab == bb)
+an =-1 else if (ab + bb == -2 ) 
+
+RIGHT
+
+bn = -1
+an = 0
+bn = 0 if ((ab + bb) > 2)
+bn = -2 if (ab + bb) == 0
+an = -1 if (ab == bb)
+an = 1 else if (ab + bb == 2 ) 
+   
+    

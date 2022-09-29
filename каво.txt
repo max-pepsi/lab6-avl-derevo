@@ -1,0 +1,53 @@
+a.b = h_q - h_r
+b.b = h_p - max(h_q+1, h_r+1)
+
+h_q = 
+h_r =
+h_p = max(b, 0) + (a-
+RIGHT
+b = p - q
+p = b + q
+q = p - b
+
+b2 = p - max(Q, R) - 1 = p - max(
+a2 = q - r
+
+LEFT
+b = q - r
+q = b - r
+r = q - b
+
+a = p - max(q, r) - 1
+p = a + max(q, r) + 1
+
+r = 0 - (a + b) / 2;
+	int q = b->balance - r;
+	int p = a->balance + max(q, r) + 1;
+
+a  b  q
+-2 -1 1
+-2 -2 0
+-2 -1 0
+
+
+a2 = p - q
+b2 = max(p,q) - r + 1
+
+RIGHT
+a = max(p,q) - r + 1 
+r = max(p,q) - a + 1
+a = max(b + q, p - b) - r + 1
+r = p + max(0, -b) - a + 1
+r = q + b + max(0, -b) - a + 1
+
+p = 0
+if (b == 1) p = 1
+if (p + 1) < a  p = 1
+p = (a+b)/2
+a b p
+2 1 1 
+2 0 1
+1 1 1
+1 0 0
+1 -1 0
+
